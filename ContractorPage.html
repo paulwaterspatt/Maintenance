@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contractor Details</title>
+
+  <!-- CSS Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    .selected-items {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .selected-items .badge {
+      margin-right: 5px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .badge .btn-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: none;
+      border: none;
+      font-size: 14px;
+      color: #fff;
+    }
+    .nav-link {
+      text-decoration: none !important;
+      color: #7e7c7c;
+      font-size: 14px;
+      padding: 4px;
+      padding-bottom: 15px;
+      padding-top: 15px;
+    }
+    body {
+      background-color: #fafbfc;
+    }
+    .logo {
+        text-align: center;
+    }
+
+    .sidebar {
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      background-color: black;
+      padding-top: 20px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+
+    .topnav {
+      background-color: #184e87;
+      color: #184e87;
+      padding: 10px 15px;
+      text-align: center;
+    }
+    .nav-tabs {
+      background-color: #ffffff;
+      display: flex;
+      }
+    .nav-link {
+      text-decoration: none !important;
+      color: #7e7c7c;
+      font-size: 14px;
+      padding: 4px;
+      padding-bottom: 15px;
+      padding-top: 15px;
+      padding-right: 20px;
+      padding-left: 15px;
+      
+      
+    }
+    .container {
+      margin-left: 250px;  /* Ensure content starts after the sidebar */
+      padding-right: 10px; /* Optional: Add padding to the right side if needed */
+      width: calc(100% - 250px); /* Take the full remaining width */
+      padding-left: 20px; /* Optional: Add padding if the content is too tight */
+    }
+    .breadcrumb p {
+      margin-bottom: 0;
+    }
+
+    .mainBody {
+      border: 1px solid #dbd7d7;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    
+    
+    .form-select {
+        height: 150px;
+    }
+    .pill-button {
+      background-color: #28a745; /* Green color */
+      color: white;
+      border: none;
+      padding: 5px 30px; /* Padding for width and height */
+      border-radius: 50px; /* Makes the button pill-shaped */
+      font-size: 11px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: none; /* Initially hidden */
+    }
+    .pill-button.show {
+      display: inline-block; /* Show button if checkbox is checked */
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Top Nav Bar -->
+  <div class="topnav">
+    <h3>Top Nav</h3>
+  </div>
+
+  <!-- Side Nav -->
+  <div class="sidebar">
+    <div class="logo">
+      <img src="htmlauction logo.png">
+    </div>
+    <a href="Maintenance.html">
+      <i class="fas fa-home"></i> Maintenance
+    </a>
+    <a href="JobPage.html">
+      <i class="fas fa-search"></i> Job Page
+    </a>
+    <a href="Contractor.html">
+      <i class="fas fa-users"></i> Contractors
+    </a>
+    <a href="ContractorPage.html">
+        <i class="fas fa-address-book"></i> Contractor Page
+      </a>
+  </div><br>
+
+  <div class="container">
+    <div class="breadcrumb" style="font-size: 12px;"><a href="Contractor.html" style="text-decoration: none; color: #000000;">Contractor >  </a>  Details</div>
+  </div>
+
+  <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="pagetitle">
+      <h5>Contractor Details   
+        <button class="pill-button" id="preferredButton">Preferred</button>
+      </h5><br>
+    </div>
+    <span><button class="btn btn-primary">Save</button> <button class="btn btn-warning" style="color: white;" >Archive</button> <button class="btn btn-danger">Delete</button>
+    </span>
+</div>
+        
+  <div class="container md-5">
+    <!-- Nav Tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="tab1" data-bs-toggle="tab" href="#content1" role="tab" aria-controls="content1" aria-selected="true"><i class="fas fa-align-justify"></i> Information</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="tab2" data-bs-toggle="tab" href="#content2" role="tab" aria-controls="content2" aria-selected="false"><i class="fas fa-clipboard-check"></i> Checklist</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="tab3" data-bs-toggle="tab" href="#content3" role="tab" aria-controls="content3" aria-selected="false"><i class="fas fa-clipboard-list"></i> Jobs</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="tab4" data-bs-toggle="tab" href="#content4" role="tab" aria-controls="content4" aria-selected="false"><i class="fas fa-coins"></i> Financials</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="tab5" data-bs-toggle="tab" href="#content5" role="tab" aria-controls="content5" aria-selected="false"><i class="fas fa-calendar"></i> Holidays</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="tab6" data-bs-toggle="tab" href="#content6" role="tab" aria-controls="content6" aria-selected="false"><i class="fas fa-file-alt"></i> Files</a>
+      </li>
+    </ul>
+  
+    <!-- Tab Content -->
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="content1" role="tabpanel" aria-labelledby="tab1">
+        <div class="card">
+            <div class="card-body">
+                <div class="col">
+          <label style="font-size: 13px;">
+              <input type="checkbox" name="example" id="checkbox1">  is Preferred?
+            </label>
+          </div>
+          <hr>
+          <div class="row">
+          <div class="col p-3">
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">Contractor Name:</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date" placeholder="GCS Properties">
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">Address Search:</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date"><br>
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">House Name/Number:</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date" placeholder="1">
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">Street:</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date" placeholder="Tyne Road">
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">Locality:</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date" placeholder="Newcastle">
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">City:</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date" placeholder="Tyne & Wear">
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">County:</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date">
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">Post Code:</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date" placeholder="NE1 7DR">
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">Country:</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date"><br>
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">Mobile:</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date" placeholder="0798654572">
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">Email:</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date" placeholder="dave@gcsproperties.co.uk">
+        <br>
+          <div class="card">
+            <div class="card-body">
+            Job Notes
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+          </div>
+        </div>
+        </div>
+        <br>
+        <div class="col p-3">
+            <!-- Search bar -->
+            <label for="searchInput" class="form-label">Enter jobs contractor can undertake</label>
+              <input type="text" class="form-control" id="searchInput" placeholder="Type and press Enter">
+            <!-- List of selected items -->
+            <div id="selectedItemsBox" class="mt-3">
+              <ul id="itemList" class="list-group"></ul>
+            </div>
+            <br>
+          <!-- Multi-Select Dropdown -->
+    <!-- Multi-Select Dropdown -->
+    <div class="form-group">
+        <label for="branchesSelect" class="form-label">Select Branches</label>
+        <select id="branchesSelect" class="form-select" multiple>
+          <option value="North Branch" selected>Alnwick</option>
+          <option value="South Branch">Ashington</option>
+          <option value="East Branch" selected>Blyth</option>
+          <option value="West Branch">Bedlington</option>
+          <option value="Central Branch">Cramlington</option>
+        </select>
+      </div>
+    <!-- Display Selected Items -->
+      <div id="selectedItemsBox" class="selected-items mt-3">
+        <h6>Selected Branches:</h6>
+        <div id="selectedItemsList">
+      </div>
+    </div>
+    </div>
+    </div>
+        </div>
+        </div>
+        </div>
+        <div class="tab-pane fade" id="content2" role="tabpanel" aria-labelledby="tab2">
+        <div class="card">
+            <div class="card-body">
+              <!-- Table -->
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Filename</th>
+                    <th scope="col"></th>
+                    <th scope="col">Expiry Date</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Row 1 -->
+                  <tr>
+                    <td>External Contractors Agreement</td>
+                    <td></td>
+                    <td>21/09/2025</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Manage</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+                  <!-- Row 2 -->
+                  <tr>
+                    <td>Public Liability Insurance</td>
+                    <td></td>
+                    <td>21/03/2026</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Manage</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+                  <!-- Row 3 -->
+                  <tr>
+                    <td>External Contractors Agreement</td>
+                    <td></td>
+                    <td>21/09/2025</td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Manage</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+                  <!-- Row 4 -->
+                  <tr>
+                    <td>Contractors Questionnaire</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Manage</button>
+                      <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!--Tab 3 Content-->
+        <div class="tab-pane fade" id="content3" role="tabpanel" aria-labelledby="tab3">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col p-3">
+            <label for="followUpDate" class="form-label"style="font-size: 14px;">Job Type</label>
+          <input type="text" class="form-control" id="followUpDate" aria-label="Follow Up Date" placeholder="">
+        </div>
+        <div class="col p-3">
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">From</label>
+          <input type="date" class="form-control" id="followUpDate" aria-label="Follow Up Date" placeholder="">
+        </div>
+        <div class="col p-3">
+          <label for="followUpDate" class="form-label"style="font-size: 14px;">To</label>
+          <input type="date" class="form-control" id="followUpDate" aria-label="Follow Up Date" placeholder="">
+        </div>
+        <div class="col p-3">
+          <br>
+          <button class="btn btn-primary">Search</button>
+        </div>
+        </div>
+        <p>Total Jobs: 3</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Property</th>
+              <th scope="col">Job Type</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>12 Windsor Street, Westminster,W1 7TS</td>
+              <td>Dishwasher</td>
+              <td>£150.00</td>
+              <td>Paid</td>
+              <td>
+                <button class="btn btn-primary">View</button>
+              </td>
+            </tr>
+            <tr>
+              <td>21 Leceister Road, Luton, LE12 7AJ</td>
+              <td>Boiler</td>
+              <td>£2,500.00</td>
+              <td>Awaiting Payment</td>
+              <td>
+                <button class="btn btn-primary">View</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Copthorne House, Newcastle, NE1 8HT</td>
+              <td>Broken Fence</td>
+              <td>£870.00</td>
+              <td>Outstanding</td>
+              <td>
+                <button class="btn btn-primary">View</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        </div>
+          </div>
+        <!--Tab 4 Content-->
+      <div class="tab-pane fade" id="content4" role="tabpanel" aria-labelledby="tab4">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col p-3">
+                <div class="card">
+                  <div class="card-body">
+        <p>Commission Details</p>
+        <p>is Commission Received?
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="commissiontoggle">
+            <p style="color: red;"><sub><i class="fas fa-arrow-left"></i> may not require this as they will be on ACL   <i class="fas fa-arrow-right"></i></sub></p>
+</div>
+        </p>
+        <div id="commissionTextbox" style="display: none; margin-top: 20px;">
+          <label for="commissionInput">Minimum Commission</label>
+          <input type="text" class="form-control" id="commissionInput" placeholder="0.00">
+          <div class="row">
+            <div class="col p-6">
+              <label for="commissionInput">Commission</label>
+              <input type="text" class="form-control" id="commissionInput" placeholder="0">
+              </div>
+            <div class="col p-6">
+              <label for="commissionInput">Commission Type</label>
+              <select class="form-control" id="commissionInput">
+                <option value="exclusive">%</option>
+                <option value="inclusive">£</option>
+                </select>
+            </div>
+          </div>
+            <div class="col p-12">
+              <label for="commissionInput">VAT Arrangement</label>
+                <select class="form-control" id="commissionInput">
+                  <option value="exclusive">Exclusive</option>
+                  <option value="inclusive">Inclusive</option>
+                  <option value="exempt">Exempt</option>
+                </select>
+            </div>
+          </div>
+      </div>
+      </div>
+      </div>
+      <div class="col p-3">
+        <div class="card">
+          <div class="card-body">
+        <p>Bank Details</p>
+        <p>View Bank Details
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="Banktoggle">
+            </div>
+        </p>
+        <div id="bankTextbox" style="display: none; margin-top: 20px;">
+          <label for="bankInput">Account Name:</label>
+          <input type="text" class="form-control" id="bankInput" placeholder="Enter Account Name">
+          <div class="row">
+            <div class="col p-6">
+              <label for="bankInput">Sort Code</label>
+              <input type="text" class="form-control" id="bankInput" placeholder="11-22-33">
+              <label for="bankInput">Payment Method</label>
+              <input type="text" class="form-control" id="bankInput" placeholder="BACS">
+            </div>
+            <div class="col p-6">
+              <label for="bankInput">Account Number</label>
+              <input type="text" class="form-control" id="bankInput" placeholder="111222333">
+              <label for="bankInput">Bank Reference</label>
+              <input type="text" class="form-control" id="bankInput" placeholder="12345678">
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="col p-6">
+        <div class="card"style="height: 800px;">
+          <div class="card-body">
+        <p>Add Financial Note</p>
+        <div class="card"style="height: 300px;">
+          <div class="card-body" >
+            <p>Add Contractor Note</p>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      <!--Tab 5 Content-->
+      <div class="tab-pane fade" id="content5" role="tabpanel" aria-labelledby="tab5">
+        <div class="card">
+            <div class="card-body">
+                <p>Holiday Calendar <sub style="color: red;" >example. Ability to select range of holiday</sub></p>
+                <div class="row">
+                    <!-- First Column -->
+                    <div class="col p-3">
+                        <p>January</p>
+                        <div class="row">
+                          <div class="row">
+                            <!-- Column 1 -->
+                            <div class="col p-2">
+                                <p>1</p>
+                                <p>7</p>
+                                <p>13</p>
+                                <p>19</p>
+                                <p>25</p>
+                            </div>
+                            <!-- Column 2 -->
+                            <div class="col p-2">
+                                <p>2</p>
+                                <p>8</p>
+                                <p>14</p>
+                                <p>20</p>
+                                <p>26</p>
+                            </div>
+                            <!-- Column 3 -->
+                            <div class="col p-2">
+                                <p>3</p>
+                                <p>9</p>
+                                <p>15</p>
+                                <p>21</p>
+                                <p>27</p>
+                            </div>
+                            <!-- Column 4 -->
+                            <div class="col p-2">
+                                <p>4</p>
+                                <p>10</p>
+                                <p>16</p>
+                                <p>22</p>
+                                <p>28</p>
+                            </div>
+                            <!-- Column 5 -->
+                            <div class="col p-2">
+                                <p>5</p>
+                                <p>11</p>
+                                <p>17</p>
+                                <p>23</p>
+                                <p>29</p>
+                            </div>
+                            <!-- Column 6 -->
+                            <div class="col p-2">
+                                <p>6</p>
+                                <p>12</p>
+                                <p>18</p>
+                                <p>24</p>
+                                <p>30</p>
+                                <p>31</p> 
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                    <!-- Second Column -->
+                    <div class="col p-3">
+                        <p>February</p>
+                        <div class="row">
+                          <div class="row">
+                            <!-- Column 1 -->
+                            <div class="col p-2">
+                                <p>1</p>
+                                <p>7</p>
+                                <p>13</p>
+                                <p>19</p>
+                                <p>25</p>
+                            </div>
+                            <!-- Column 2 -->
+                            <div class="col p-2">
+                                <p>2</p>
+                                <p>8</p>
+                                <p>14</p>
+                                <p>20</p>
+                                <p>26</p>
+                            </div>
+                            <!-- Column 3 -->
+                            <div class="col p-2">
+                                <p>3</p>
+                                <p>9</p>
+                                <p>15</p>
+                                <p>21</p>
+                                <p>27</p>
+                            </div>
+                            <!-- Column 4 -->
+                            <div class="col p-2">
+                                <p>4</p>
+                                <p>10</p>
+                                <p>16</p>
+                                <p>22</p>
+                                <p>28</p>
+                            </div>
+                            <!-- Column 5 -->
+                            <div class="col p-2">
+                                <p>5</p>
+                                <p>11</p>
+                                <p>17</p>
+                                <p>23</p>
+                                <p>29</p>
+                            </div>
+                            <!-- Column 6 -->
+                            <div class="col p-2">
+                                <p>6</p>
+                                <p>12</p>
+                                <p>18</p>
+                                <p>24</p>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                    <!-- Third Column -->
+                    <div class="col p-3">
+                        <p>March</p>
+                        <div class="row">
+                          <div class="row">
+                            <!-- Column 1 -->
+                            <div class="col p-2">
+                                <p>1</p>
+                                <p>7</p>
+                                <p>13</p>
+                                <p>19</p>
+                                <p>25</p>
+                            </div>
+                            <!-- Column 2 -->
+                            <div class="col p-2">
+                                <p>2</p>
+                                <p>8</p>
+                                <p>14</p>
+                                <p>20</p>
+                                <p>26</p>
+                            </div>
+                            <!-- Column 3 -->
+                            <div class="col p-2">
+                                <p>3</p>
+                                <p>9</p>
+                                <p>15</p>
+                                <p>21</p>
+                                <p>27</p>
+                            </div>
+                            <!-- Column 4 -->
+                            <div class="col p-2">
+                                <p>4</p>
+                                <p>10</p>
+                                <p>16</p>
+                                <p>22</p>
+                                <p>28</p>
+                            </div>
+                            <!-- Column 5 -->
+                            <div class="col p-2">
+                                <p>5</p>
+                                <p>11</p>
+                                <p>17</p>
+                                <p>23</p>
+                                <p>29</p>
+                            </div>
+                            <!-- Column 6 -->
+                            <div class="col p-2">
+                                <p>6</p>
+                                <p>12</p>
+                                <p>18</p>
+                                <p>24</p>
+                                <p>30</p>
+                                <p>31</p> 
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                    <!-- Fourth Column -->
+                    <div class="col p-3">
+                      <p>April</p>
+                      <div class="row">
+                        <div class="row">
+                          <!-- Column 1 -->
+                          <div class="col p-2">
+                              <p>1</p>
+                              <p>7</p>
+                              <p>13</p>
+                              <p>19</p>
+                              <p>25</p>
+                          </div>
+                          <!-- Column 2 -->
+                          <div class="col p-2">
+                              <p>2</p>
+                              <p>8</p>
+                              <p>14</p>
+                              <p>20</p>
+                              <p>26</p>
+                          </div>
+                          <!-- Column 3 -->
+                          <div class="col p-2">
+                              <p>3</p>
+                              <p>9</p>
+                              <p>15</p>
+                              <p>21</p>
+                              <p>27</p>
+                          </div>
+                          <!-- Column 4 -->
+                          <div class="col p-2">
+                              <p>4</p>
+                              <p>10</p>
+                              <p>16</p>
+                              <p>22</p>
+                              <p>28</p>
+                          </div>
+                          <!-- Column 5 -->
+                          <div class="col p-2">
+                              <p>5</p>
+                              <p>11</p>
+                              <p>17</p>
+                              <p>23</p>
+                              <p>29</p>
+                          </div>
+                          <!-- Column 6 -->
+                          <div class="col p-2">
+                              <p>6</p>
+                              <p>12</p>
+                              <p>18</p>
+                              <p>24</p>
+                              <p>30</p>
+                              <p>31</p> 
+                          </div>
+                      </div>
+                      
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      <!--Tab 6 Content-->
+      <div class="tab-pane fade" id="content6" role="tabpanel" aria-labelledby="tab6">
+        <div class="card">
+          <div class="card-body">
+              <form>
+                <button class="btn btn-primary">+ Add Files</button>
+              </form>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">File</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Uploaded By</th>
+                  <th scope="col">Uploaded On</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Contractor Agreement.PDF</td>
+                  <td>Contract</td>
+                  <td>01/01/2025</td>
+                  <td>Eloise Wallace</td>
+                  <td>
+                    <button class="btn btn-danger">Delete</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Company T&Cs.PDF</td>
+                  <td>T&Cs</td>
+                  <td>01/02/2025</td>
+                  <td>Charlotte Mason</td>
+                  <td>
+                    <button class="btn btn-danger">Delete</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Company Insurance Docs.PDF</td>
+                  <td>Insurance</td>
+                  <td>01/03/2025</td>
+                  <td>Jonathan Parker</td>
+                  <td>
+                    <button class="btn btn-danger">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+    
+</div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript to handle input, list addition, and delete functionality -->
+<script>
+
+  // Get elements
+  const bankToggle = document.getElementById('Banktoggle');
+    const bankTextbox = document.getElementById('bankTextbox');
+
+    // Event listener for toggle state change
+    bankToggle.addEventListener('change', function() {
+      if (bankToggle.checked) {
+        bankTextbox.style.display = 'block'; // Show the textbox
+      } else {
+        bankTextbox.style.display = 'none'; // Hide the textbox
+      }
+    });
+    // Get elements
+  const commissionToggle = document.getElementById('commissiontoggle');
+    const commissionTextbox = document.getElementById('commissionTextbox');
+
+    // Event listener for toggle state change
+    commissionToggle.addEventListener('change', function() {
+      if (commissionToggle.checked) {
+        commissionTextbox.style.display = 'block'; // Show the textbox
+      } else {
+        commissionTextbox.style.display = 'none'; // Hide the textbox
+      }
+    });
+    // Get the checkbox and the button
+    const checkbox = document.getElementById('checkbox1');
+    const preferredButton = document.getElementById('preferredButton');
+
+    // Function to toggle button visibility based on checkbox state
+    checkbox.addEventListener('change', function() {
+      if (checkbox.checked) {
+        preferredButton.classList.add('show');  // Show button if checked
+      } else {
+        preferredButton.classList.remove('show');  // Hide button if unchecked
+      }
+    });
+    
+    // Get the dropdown and the display area for selected items
+    const branchesSelect = document.getElementById('branchesSelect');
+    const selectedItemsList = document.getElementById('selectedItemsList');
+
+    // Event listener for changes in the multi-select dropdown
+    branchesSelect.addEventListener('change', function () {
+        
+      // Get the selected options
+      const selectedOptions = Array.from(branchesSelect.selectedOptions);
+      
+      // Clear the selected items list before updating
+      selectedItemsList.innerHTML = '';
+      
+
+      // Loop through each selected option and add it to the display area
+      selectedOptions.forEach(option => {
+        const badge = document.createElement('span');
+        badge.classList.add('badge', 'bg-primary', 'm-1');
+        badge.textContent = option.value;
+        
+
+        // Create a delete button (cross)
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('btn-close');
+        deleteButton.addEventListener('click', function () {
+          // Remove the item from the dropdown selection
+          option.selected = false;
+
+          // Remove the badge (selected item) from the display list
+          selectedItemsList.removeChild(badge);
+        });
+
+        // Append the badge to the list
+        selectedItemsList.appendChild(badge);
+      });
+    });
+
+    const searchInput = document.getElementById('searchInput');
+    const itemList = document.getElementById('itemList');
+  
+    // Add default "Carpet Fitting" item when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        addItemToList("Carpet Fitting");
+        addItemToList("Roofing");
+    });
+  
+    function addItemToList(item) {
+        const newItem = document.createElement('li');
+        newItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+        newItem.textContent = item;
+  
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
+        deleteButton.textContent = '×';
+        deleteButton.addEventListener('click', function () {
+          itemList.removeChild(newItem);
+        });
+  
+        newItem.appendChild(deleteButton);
+        itemList.appendChild(newItem);
+    }
+  
+    searchInput.addEventListener('keypress', function (event) {
+      if (event.key === 'Enter' && searchInput.value.trim() !== '') {
+        addItemToList(searchInput.value);
+        searchInput.value = '';
+      }
+    });
+</script>
+</body>
+</html>
