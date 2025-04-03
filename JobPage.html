@@ -11,6 +11,17 @@
   
 
   <style>
+    
+    table th {
+      font-size: 12px;
+      font-weight: 200; 
+      background-color: #f2f2f2;
+      padding: 5px;
+    }
+    table td {
+      font-size: 14px;
+      padding: 5px;
+    }
     .nav-link {
   text-decoration: none !important;
   color: #7e7c7c;
@@ -115,17 +126,17 @@
       font-size: 14px;
       padding: 5px;
     }
-.btn {
-  background-color: #337ab7;
-  border: none;
-}
-.card {
-  padding: 20px;
-}
-p {
-  font-size: 13px;
-}
-  </style>
+    .btn {
+      background-color: #337ab7;
+      border: none;
+    }
+    .card {
+      padding: 20px;
+    }
+    p {
+      font-size: 13px;
+    }
+      </style>
 </head>
 <body>
   <!-- Top Nav Bar -->
@@ -210,7 +221,7 @@ p {
         </a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="maintenance-tab" data-bs-toggle="tab" href="#Maintenance" role="tab" aria-controls="maintenance" aria-selected="true">
+        <a class="nav-link active" style="color: red;" id="maintenance-tab" data-bs-toggle="tab" href="#Maintenance" role="tab" aria-controls="maintenance" aria-selected="true">
       <i class="fas fa-wrench"></i> Maintenance
         </a>
       </li>
@@ -274,9 +285,8 @@ p {
                 <div class="card" Style="padding-left: 10px; font-size: 12px;" >Tenant complained about leaking roof
                 </div>
                   <br>
-                  <div class="contractor"></div>
-                  <button class="btn btn-primary float-end">Add Contractor</button> <!-- Button aligned to the right --></p>
-                   <br><br><br><h6>Contractor</h6>
+                  <button class="btn btn-primary">+ Add Contractor</button> <!-- Button aligned to the right --></p>
+                   <h6>Contractor</h6>
                 <div class="card" Style="padding-left: 10px; font-size: 12px;">
                     <p>GCS Properties</p>
                     <p>1 Lent Road</p>
@@ -293,9 +303,7 @@ p {
 
                     <label for="followUpDate" class="form-label"style="font-size: 14px;">Follow Up Date:</label>
                     <input type="date" class="form-control" id="followUpDate" aria-label="Follow Up Date">
-
                     <br>
-                  
                   <div class="card">
                     <p>Add Job Note</p>
                     <div class="card">
@@ -304,16 +312,18 @@ p {
                     <button class="btn btn-primary float-end">Post</button>
                   </div>
                   <br>
-                  <div class="card">
+                  <div class="card" Style="height: 200px;">
                     Job Notes
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br>
+                    
                   </div>
                   </div>
               
               <!-- Second col -->
               <div class="col-md-7">
               <form>
-                <button class="btn btn-success float-end">Mark As Complete</button>
+                <button id="quoteButton" class="btn float-end" style="background-color: #068d23; color: white;" onclick="toggleText()">Mark As Quote Sent</button>
+                <button class="btn float-end" style="background-color: #f21717; color: white; margin-right: 5px;">Mark As Complete</button>
               </form><br><br><br>
               <h6>Job Details</h6>
               <div class="card" style="font-size: 12px; padding: 5px;">
@@ -329,7 +339,7 @@ p {
                   <li style="width: 25%;">Contact details Consent</li>
                   <li style="width: 25%;">Yes</li>
                   <li style="width: 25%;">Float Value</li>
-                  <li style="width: 25%;">£100.00</li>
+                  <li style="width: 25%;"><input style="border: none;" type="text" value="£100.00" /></li>
                   <li style="width: 25%;">Price Agreed</li>
                   <li style="width: 25%;">£250.00</li>
                   <li style="width: 25%;">Quote Approval</li>
@@ -387,8 +397,7 @@ p {
                 </div>
               </div>
               </div>
-            
-          </div>
+            </div>
 
     <!-- Pop-Out Window (Initially hidden off-screen) -->
     <div id="popup-window">
@@ -400,12 +409,14 @@ p {
       <p>Tenants are out Mondays and Wednesdays</p>
     </div>
   </div>
-
-  <script>
+<script>
     // Function to open the popup window
-    function openPopup() {
-      document.getElementById('popup-window').style.right = '10PX'; // Slide it in
-    }
+function openPopup() {
+  document.getElementById('popup-window').style.right = '10px'; // Slide it in
+}
+
+// Open the popup when the page loads
+window.onload = openPopup;
 
     // Function to close the popup window
     function closePopup() {
@@ -437,7 +448,24 @@ p {
         maintenanceTab.classList.add('active');
       });
     });
-  </script>
+    <script>
+  function toggleText() {
+    const button = document.getElementById('quoteButton');
+    const currentText = button.textContent.trim(); // Get the current text content and trim any whitespace
+    
+    // Cycle through the text values
+    if (currentText === 'Mark As Quote Sent') {
+      button.textContent = 'Quote Sent';
+    } else if (currentText === 'Quote Sent') {
+      button.textContent = 'Quote Approved';
+    } else if (currentText === 'Quote Approved') {
+      button.textContent = 'Complete';
+    } else {
+      button.textContent = 'Mark As Quote Sent'; // Reset back to the initial state
+    }
+  }
+</script>
+    
 
   <!-- Bootstrap 5 JS (required for the tabs to work) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
