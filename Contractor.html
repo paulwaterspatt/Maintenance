@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contractors</title>
+
+  <!-- CSS Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  
+
+  <style>
+    .nav-link {
+  text-decoration: none !important;
+  color: #7e7c7c;
+  font-size: 14px;
+  padding: 4px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  
+}
+    body {
+      background-color: #fafbfc;
+    }
+    .logo {
+        text-align: center;
+    }
+
+    .sidebar {
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      background-color: black;
+      padding-top: 20px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+
+    .topnav {
+      background-color: #184e87;
+      color: #184e87;
+      padding: 10px 15px;
+      text-align: center;
+    }
+.nav-tabs {
+  background-color: #ffffff;
+  
+}
+.container {
+  margin-left: 250px;  /* Ensure content starts after the sidebar */
+  padding-right: 10px; /* Optional: Add padding to the right side if needed */
+  width: calc(100% - 250px); /* Take the full remaining width */
+  padding-left: 20px; /* Optional: Add padding if the content is too tight */
+}
+
+    .breadcrumb p {
+      margin-bottom: 0;
+    }
+
+    .mainBody {
+      border: 1px solid #dbd7d7;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+    /* Pop-out Window Styles */
+    #popup-window {
+      position: fixed;
+      top: 25%;
+      right: -500px; /* Initially off-screen */
+      transform: translateY(-50%);
+      width: 500px;
+      height: 200px;
+      background-color: #f21717;
+      color: #fff;
+      box-shadow: -3px 3px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      z-index: 9999;
+      transition: right 0.3s ease; /* Slide in effect */
+      padding: 20px;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+      /* Style every odd row with a grey background */
+      table tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+    table th {
+      font-size: 12px;
+      font-weight: 200; /* You can change 'bold' to any weight like 'normal', 'lighter', or use numeric values like 100, 200, ..., 900 */
+      background-color: #f2f2f2;
+      padding: 5px;
+    }
+    table td {
+      font-size: 14px;
+      padding: 5px;
+    }
+.btn {
+  background-color: #337ab7;
+  border: none;
+}
+.card {
+  padding: 20px;
+}
+p {
+  font-size: 13px;
+}
+/* Apply grey background to odd rows */
+tbody tr:nth-child(odd) {
+    background-color: rgb(253, 251, 251);
+}
+  </style>
+</head>
+<body>
+  <!-- Top Nav Bar -->
+  <div class="topnav">
+    <h3>Top Nav</h3>
+  </div>
+
+  <!-- Side Nav -->
+  <div class="sidebar">
+    <div class="logo">
+      <img src="htmlauction logo.png">
+    </div>
+    <a href="Maintenance.html">
+      <i class="fas fa-home"></i> Maintenance
+    </a>
+    <a href="JobPage.html">
+      <i class="fas fa-search"></i> Job Page
+    </a>
+    <a href="Contractor.html">
+      <i class="fas fa-users"></i> Contractors
+    </a>
+    <a href="ContractorPage.html">
+        <i class="fas fa-address-book"></i> Contractor Page
+      </a>
+  </div><br>
+
+  <div class="container">
+    <div class="breadcrumb" style="font-size: 12px;">Contractors ></div>
+  </div>
+
+  <div class="container">
+    <div class="pagetitle">
+      <h5>Contractors</h5><br>
+    </div>
+        <div class="card">
+        <div class="row">
+              <!-- First col -->
+              <div class="col-md-7">
+                <div class="contractor"></div>
+                <form>
+                  <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#contractorModal">
+                    + Add Contractor
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#emailPreviewModal">
+                      Send Contractor Pack
+                    </button></p>
+                </form>
+                   <label for="Contractorsearch" class="form-label"style="font-size: 14px;">Contractor Search:</label>
+                    <input type="text" class="form-control" id="Contractorsearch" aria-label="Contractor Name">
+                    <br>
+              </div>
+              <table class="table">
+                  <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Is Archived</th>
+                                <th class="d-print-none"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td>BG Contractors</a></td>
+                                <td>12 Winsford Crescent, Stafford, Staffordshire, ST17 0PH</td>
+                                <td>False</td>
+                                    <td class="d-print-none text-end">
+                                        <a class="btn btn-primary" href="ContractorPage.html">Manage</a>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td>Eddie Builders</a></td>
+                                <td>4 Coronation Road, Crosby, Liverpool, Merseyside, L23 3BJ</td>
+                                <td>False</td>
+                                    <td class="d-print-none text-end">
+                                        <a class="btn btn-primary" href="ContractorPage.html">Manage</a>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td>Farm Roofing</td>
+                                <td>1A Jenner Road, Guildford, Surrey, GU1 3PH</td>
+                                <td>False</td>
+                                    <td class="d-print-none text-end">
+                                        <a class="btn btn-primary" href="ContractorPage.html">Manage</a>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td><a href="ContractorPage.html">GCS Properties</a></td>
+                                <td>13 Surrey Street, Lowestoft, Suffolk, NR32 1LJ</td>
+                                <td>False</td>
+                                    <td class="d-print-none text-end">
+                                        <a class="btn btn-primary" href="ContractorPage.html">Manage</a>
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td>Head Liners</td>
+                                <td>Copthorne House The Broadway, Abergele, Conwy, LL22 7DD</td>
+                                <td>False</td>
+                                    <td class="d-print-none text-end">
+                                        <a class="btn btn-primary" href="ContractorPage.html">Manage</a>
+                                    </td>
+                            </tr>
+                      </tbody>
+                </table>
+            </div>
+                  
+<!-- Modal -->
+  <div class="modal fade" id="contractorModal" tabindex="-1" aria-labelledby="contractorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <form>
+          <div class="modal-header">
+            <h5 class="modal-title" id="contractorModalLabel">Create Contractor</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col p-6">
+            <div class="mb-3">
+              <label for="contractorName" class="form-label">Contractor Name</label>
+              <input type="text" class="form-control" id="contractorName" required>
+            </div>
+            <div class="mb-3">
+              <label for="contact" class="form-label">Contact</label>
+              <input type="text" class="form-control" id="contact">
+            </div>
+            <div class="mb-3">
+              <label for="mobile" class="form-label">Mobile</label>
+              <input type="tel" class="form-control" id="mobile">
+            </div>
+            <div class="mb-3">
+              <label for="telephone" class="form-label">Telephone</label>
+              <input type="tel" class="form-control" id="telephone">
+            </div>
+            
+          </div><!--end of 1st Col-->
+          <div class="col p-6">
+            <div class="mb-3">
+              <label for="telephone" class="form-label">Website</label>
+              <input type="tel" class="form-control" id="website">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email">
+            </div>
+            <div class="mb-3">
+              <label for="telephone" class="form-label">Work Phone</label>
+              <input type="tel" class="form-control" id="workphone">
+            </div>
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+              <label for="expiryToggle" class="form-label mb-0">Public Liability Required?</label>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="expiryToggle">
+              </div>
+            </div>
+          
+            <div id="expiryDateField" class="mb-3" style="display: none;">
+              <label for="expiryDate" class="form-label">Expiry Date</label>
+              <input type="date" class="form-control" id="expiryDate">
+            </div>
+          </div>
+          <hr>
+          
+          <div class="col" data-lookup-postcode-address="" data-country-codes="GB,ES">
+            <div class="mb-3">
+                <label class="form-label" for="Search">Company Address Search</label>
+                <input class="form-control border border-primary border-3" data-pca-field="Line1" data-pca-search="true" id="Search" name="Search" placeholder="Start typing postcode or address" type="text" value="" spellcheck="true" autocomplete="off">
+            </div>
+            <div class="mb-3">
+                <label class="form-label required" for="Address_HouseNameNumber">House Name/Number</label>
+                <input class="form-control" data-bind="css: { 'input-validation-error': propertyHouseNumber.hasError }" data-pca-field="BuildingNumber" data-val="true" data-val-length="The field House Name/Number must be a string with a maximum length of 200." data-val-length-max="200" data-val-required="The House Name/Number field is required." id="Address_HouseNameNumber" maxlength="200" name="Address.HouseNameNumber" type="text" value="" spellcheck="true">
+                <span class="error" data-bind="visible: propertyHouseNumber.hasError, text: propertyHouseNumber.validationMessage"> </span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label required" for="Address_Street">Street</label>
+                <input class="form-control" data-bind="css: { 'input-validation-error': propertyStreet.hasError }" data-pca-field="Street" data-val="true" data-val-length="The field Street must be a string with a maximum length of 200." data-val-length-max="200" data-val-required="The Street field is required." id="Address_Street" maxlength="200" name="Address.Street" type="text" value="" spellcheck="true">
+                <span class="error" data-bind="visible: propertyStreet.hasError, text: propertyStreet.validationMessage"> </span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Address_Locality">Locality</label>
+                <input class="form-control" data-pca-field="District" data-val="true" data-val-length="The field Locality must be a string with a maximum length of 50." data-val-length-max="50" id="Address_Locality" maxlength="50" name="Address.Locality" type="text" value="" spellcheck="true">
+            </div>
+            <div class="mb-3">
+                <label class="form-label required" for="Address_City">City</label>
+                <input class="form-control" data-bind="css: { 'input-validation-error': propertyCity.hasError }" data-pca-field="City" data-val="true" data-val-length="The field City must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The City field is required." id="Address_City" maxlength="50" name="Address.City" type="text" value="" spellcheck="true">
+                <span class="error" data-bind="visible: propertyCity.hasError, text: propertyCity.validationMessage"> </span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Address_County">County</label>
+                <input class="form-control" data-pca-field="Province" data-val="true" data-val-length="The field County must be a string with a maximum length of 50." data-val-length-max="50" data-val-required="The County field is required." id="Address_County" maxlength="50" name="Address.County" type="text" value="" spellcheck="true">
+            </div>
+            <div class="mb-3">
+                <label class="form-label required" for="Address_Postcode">Postcode</label>
+                <input class="form-control" data-bind="css: { 'input-validation-error': propertyPostcode.hasError }" data-pca-field="PostalCode" data-val="true" data-val-length="The field Postcode must be a string with a maximum length of 10." data-val-length-max="10" data-val-required="The Postcode field is required." id="Address_Postcode" maxlength="10" name="Address.Postcode" type="text" value="" spellcheck="true">
+                <span class="error" data-bind="visible: propertyPostcode.hasError, text: propertyPostcode.validationMessage"> </span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label required" for="Address_Country">Country</label>
+                <select class="form-select" data-pca-field="CountryIso2" data-val="true" data-val-length="The field Country must be a string with a maximum length of 2." data-val-length-max="2" data-val-required="The Country field is required." id="Address_Country" name="Address.Country"><option value="">Please Select...</option>
+          <option selected="selected" value="GB">United Kingdom</option>
+          <option value="ES">Spain</option>
+          </select>
+          <span class="field-validation-valid" data-valmsg-for="Address.Country" data-valmsg-replace="true"></span>
+            </div>
+            <div class="row">
+              <div class="col p-6">
+            <div class="mb-3">
+              <label for="services" class="form-label">Services Provided</label>
+              <textarea class="form-control" id="services" name="services" rows="4" placeholder="Enter Services (Multi Selection)"></textarea>
+            </div>
+          </div>
+            <div class="col p-6">
+              <div class="mb-3">
+                <label for="branches" class="form-label">Branches Covered</label>
+                <textarea class="form-control" id="branches" name="branches" rows="4" placeholder="Enter Branches Covered (Multi Selection)"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div><!--end of 2nd col-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Email Preview Modal -->
+<div class="modal fade" id="emailPreviewModal" tabindex="-1" aria-labelledby="emailPreviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="emailPreviewModalLabel">Send Contractor Pack</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="contractoremail" class="form-label">Email</label>
+            <input type="text" class="form-control" id="exampleInput" placeholder="">
+          </div>
+        </form>
+        <h6>Preview</h6><br>
+        <div class="card">
+        <p><strong>Select the file(s) you wish to send:</strong></p>
+        <hr>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="Contractoragreement">
+          <label class="form-check-label" for="Contractoragreement">
+            External Contractor Agreement
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="Contractorquestionaire">
+          <label class="form-check-label" for="Contractorquestionaire">
+            Contractor Questionnaire
+          </label>
+        </div>
+        
+      </div>
+    </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Send Pack</button>
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+</div>
+<script>
+    const toggle = document.getElementById('expiryToggle');
+    const expiryField = document.getElementById('expiryDateField');
+
+    toggle.addEventListener('change', () => {
+      expiryField.style.display = toggle.checked ? 'block' : 'none';
+    });
+  </script>
+<!-- Bootstrap 5 JS (required for the tabs to work) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
